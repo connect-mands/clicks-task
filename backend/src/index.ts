@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://clicks-task.onrender.com'],
+  origin: ['http://localhost:5173', 'https://melodious-pothos-c2f031.netlify.app'],
   credentials: true,
 }));
 app.use(express.json());
