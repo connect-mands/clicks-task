@@ -1,6 +1,9 @@
 import axios from 'axios';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+if (import.meta.env.PROD && API_BASE.includes('localhost')) {
+  console.warn('VITE_API_URL not set in production. Add it in Netlify env vars.');
+}
 const api = axios.create({
   baseURL: `${API_BASE}/api`,
   headers: { 'Content-Type': 'application/json' },
