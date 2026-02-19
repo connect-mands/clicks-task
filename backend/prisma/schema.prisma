@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  Male
+  Female
+  Other
+}
+
+model User {
+  id             Int            @id @default(autoincrement())
+  username       String         @unique
+  password       String
+  age            Int
+  gender         Role
+  featureClicks  FeatureClick[]
+
+  @@map("users")
+}
+
+
+model FeatureClick {
+  id          Int      @id @default(autoincrement())
+  userId      Int      @map("user_id")
+  featureName String   @map("feature_name")
+  timestamp   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([featureName])
+  @@index([timestamp])
+  @@map("feature_clicks")
+}
