@@ -35,6 +35,14 @@ Set `DATABASE_URL` if needed (default: `postgresql://localhost:5432/analytics`).
 
 `npm run seed` (in backend) creates 12 users and 80+ feature clicks.
 
+## Deployment
+
+**Frontend (Netlify):**
+- Add env var `VITE_API_URL` = your deployed backend URL (e.g. `https://yourapp.onrender.com`)
+- Redeploy after changing env vars (Vite reads them at build time)
+
+**Backend (Render/Railway):** Set `DATABASE_URL` and `JWT_SECRET`, deploy.
+
 ## Scaling Essay (1M writes/min)
 
 Use Kafka for write buffering, TimescaleDB/ClickHouse for analytics, pre-aggregation, and horizontal scaling.
